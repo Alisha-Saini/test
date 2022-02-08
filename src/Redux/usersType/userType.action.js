@@ -10,17 +10,17 @@ export function userDetail(type, user) {
 }
 
 //-----------------------------------USER-------------------------------------
-export function userAction() {
+export const userAction = async () => {
+  console.log("here---", await axios.get(URL_GET));
   return (dispatch) => {
-    console.log("dispatch", dispatch);
     axios
       .get(URL_GET)
       .then((response) => {
-        console.log("resposne", response);
-        dispatch(userDetail(SET_USER_DETAIL, response.data));
+        console.log("resposne---", response);
+        dispatch(userDetail(SET_USER_DETAIL, response?.data));
       })
       .catch((error) => {
         console.error(error);
       });
   };
-}
+};
